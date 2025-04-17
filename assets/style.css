@@ -1,0 +1,242 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(202, 117, 117);
+}
+
+header {
+    margin-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centrer verticalement */
+}
+
+h2 {
+    color: #fff;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+h5{
+    color: #f0f0f0;
+    text-align: center;
+    
+}
+
+footer {
+    margin: 5px;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+    text-align: center; /* Centrer le texte du footer */
+}
+
+.movie, .series {
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #444242;
+    transition: transform 0.2s, box-shadow 0.2s; /* Ajout d'une ombre */
+    display: flex; /* Utiliser flexbox pour aligner le contenu */
+    flex-direction: column; /* Aligner le contenu verticalement */
+    align-items: center; /* Centrer le contenu */
+}
+
+.movie:hover, .series:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Ombre lors du survol */
+}
+
+#detail-container {
+    margin-top: 20px;
+}
+
+#comments-container {
+    margin-top: 20px;
+}
+
+.comment {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+}
+
+.comment-author {
+    font-weight: bold;
+}
+
+.comment-text {
+    margin-top: 5px;
+}
+
+textarea {
+    resize: none;
+}
+
+.search-input {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-input input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.autocom-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background: white;
+    z-index: 1000;
+    display: none; /* Initially hidden */
+}
+
+.autocom-box.active {
+    display: block; /* Show when active */
+}
+
+.autocom-box li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.autocom-box li:hover {
+    background: #f0f0f0;
+}
+
+.search-bar {
+    padding: 10px;
+    border: none;
+    border-radius: 30px;
+    width: 80%; /* Ajustez la largeur selon vos besoins */
+    max-width: 400px; /* Limite la largeur sur les écrans plus grands */
+    margin: 10px auto; /* Centrer la barre de recherche */
+}
+
+/* Media Queries pour la Responsivité */
+@media (max-width: 768px) {
+    .movie, .series {
+        flex: 1 1 100%; /* Prend toute la largeur sur les petits écrans */
+        margin: 10px 0; /* Réduit l'espacement */
+    }
+}
+
+@media (min-width: 769px) {
+    .movie, .series {
+        flex: 1 1 calc(25% - 30px); /* 4 cartes par ligne avec espacement */
+    }
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne */
+    justify-content: center; /* Centre les éléments */
+}
+.pagination-container {
+    display: flex;
+    justify-content: center; /* Centre les boutons */
+    align-items: center; /* Centre verticalement */
+    margin: 20px 0; /* Espacement autour de la pagination */
+}
+
+.pagination-container button {
+    margin: 0 10px; /* Espacement entre les boutons */
+    padding: 10px 20px; /* Espacement interne des boutons */
+    border-radius: 5px; /* Coins arrondis */
+    transition: background-color 0.3s; /* Animation de changement de couleur */
+}
+
+.pagination-container button:hover {
+    background-color: #555; /* Couleur de fond au survol */
+    color: #fff; /* Couleur du texte au survol */
+}
+
+.pagination-container span {
+    color: #fff; /* Couleur du texte de la page */
+    margin: 0 10px; /* Espacement autour du texte de la page */
+}
+/* Style général pour le conteneur des favoris */
+#favorites-container {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne */
+    justify-content: space-between; /* Espace entre les cartes */
+    margin: 20px 0; /* Marge en haut et en bas */
+}
+
+/* Style pour chaque carte de film/série */
+.favorite {
+    background-color: #fff; /* Couleur de fond blanche */
+    border: 1px solid #ddd; /* Bordure grise */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    margin: 10px; /* Marge autour de chaque carte */
+    padding: 15px; /* Espacement interne */
+    width: calc(25% - 20px); /* Largeur de la carte (4 par ligne) */
+    transition: transform 0.2s; /* Transition pour l'effet de survol */
+}
+
+/* Effet de survol pour les cartes */
+.favorite:hover {
+    transform: scale(1.05); /* Agrandit la carte au survol */
+}
+
+/* Style pour le titre */
+.favorite h5 {
+    font-size: 1.2em; /* Taille de police du titre */
+    margin: 10px 0; /* Marge autour du titre */
+}
+
+/* Style pour l'image */
+.favorite img {
+    width: 100%; /* L'image prend toute la largeur de la carte */
+    border-radius: 5px; /* Coins arrondis pour l'image */
+}
+
+/* Style pour le bouton Détails */
+.favorite .btn-danger {
+    margin-top: 10px; /* Marge au-dessus du bouton */
+    width: 100%; /* Le bouton prend toute la largeur de la carte */
+    padding: 10px; /* Espacement interne du bouton */
+    display:flex;
+    justify-content: flex-end;
+}
+.btn {
+    margin: 10px;
+    padding: 10px 20px;
+    right: 50%;
+    display: flex;
+    justify-content:flex-end;
+}
+
+.favorite {
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: transform 0.2s;
+}
+
+.favorite:hover {
+    transform: scale(1.05);
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
