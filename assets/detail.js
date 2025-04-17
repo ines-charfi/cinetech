@@ -74,3 +74,7 @@ function loadCommentsSection(id) {
 
 // Load details on page load
 loadDetails();
+
+
+
+

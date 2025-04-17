@@ -62,3 +62,6 @@ async function setupPagination(totalPages) {
 
 // Charger les films lors du chargement de la page
 loadMovies(currentPage);
+
+
+
