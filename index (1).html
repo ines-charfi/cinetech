@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cinetek - Détails</title>
+    <title>Cinetek - Accueil</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="detail.js" type="module" defer></script>
+    <script src="index.js" type="module" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,18 +16,19 @@
         <h1>Cine<span class="text-danger">FleX|</span></h1>
         <input type="text" id="search" placeholder="Rechercher..." class="search-bar">
         <nav>
-            <a href="index.html" class="text-white">Accueil</a>
+            <a href="index.html" class="text-white active">Accueil</a>
             <a href="movies.html" class="text-white">Films</a>
             <a href="series.html" class="text-white">Séries</a>
             <a href="favoris.html" class="text-white">Favoris</a>
         </nav>
     </header>
 
-  
     <div class="container mt-4">
-        <h2 id="series-title" class="text-center"></h2>
-        <div id="detail-container" class="row"></div>
-        <div id="comments-container" class="mt-4"></div>
+        <h2>Films Populaires</h2><br><br>
+        <div id="movies-container" class="row"><br></div>
+        
+        <br><h2>Séries Populaires</h2><br><br>
+        <div id="series-container" class="row"></div>
     </div>
 
     <footer class="bg-dark text-white text-center p-4">
