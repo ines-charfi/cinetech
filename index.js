@@ -1,5 +1,4 @@
 // index.js
-// index.js
 // Vous pouvez ajouter ici des fonctionnalités spécifiques à la page d'accueil
 // Par exemple, des animations, des événements, ou des redirections
 
