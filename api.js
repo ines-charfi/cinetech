@@ -1,5 +1,5 @@
 // api.js
-export const apiKey = '8c4b867188ee47a1d4e40854b27391ec'; // Remplacez par votre clé API TMDB
+export const apiKey = '8c4b867188ee47a1d4e40854b27391ec'; // Remplacez par la clé API donnée
 
 export async function fetchMovies(page) {
     const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=fr-FR&page=${page}`);
