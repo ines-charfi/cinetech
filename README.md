@@ -109,25 +109,41 @@ Ouvrir dans un navigateur :
 
 Structure des Fichiers 📂
 cinetech/
+
 ├── index.html          # 🏠 Accueil
+
 ├── films.html          # 🎬 Films
+
 ├── series.html         # 📺 Séries
+
 ├── detail.html         # 🔍 Détail
+
 ├── favoris.html        # ❤️ Favoris
+
 ├── css/
+
 │   ├── style.css       # 🎨 Style principal
 │  
 ├── js/
+
 │   ├── api.js       # 🔑 Config API
+
 │   ├── index.js         # 🧠 Script principal
+
 │   ├── movies.js        # 🎬 Logique films
+
 │   ├── series.js       # 📺 Logique séries
+
 │   ├── detail.js       # 🔍 Logique détail
+
 │   └── favoris.js      # ❤️ Gestion favoris
+
 └── assets/
     └── img/            # 🖼️ Images du projet
+    
 
 Responsive Design 📱💻
+
 L'application s'adapte parfaitement à :
 
 - Desktop (≥ 1024px)
@@ -139,6 +155,7 @@ L'application s'adapte parfaitement à :
 Responsive Design Aperçu des différentes tailles d'écran
 
 Limitations ⚠️
+
 🔒 Pas de système d'authentification (localStorage seulement)
 
 📊 Données limitées par l'API TMDB
@@ -149,4 +166,4 @@ Limitations ⚠️
 
 Auteur 👨‍💻
 ines-charfi
-[Votre nom] <img src="assets/icons/github.png" width="16"> [@votregithub]
+
