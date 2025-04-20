@@ -5,7 +5,8 @@ README - Cinetech 🎬🍿
 Description du Projet 🚀
 Cinetech est une application web qui permet aux utilisateurs de découvrir des films 🎥 et des séries TV 📺 en utilisant l'API The Movie Database (TMDB). L'application offre une interface intuitive pour parcourir, rechercher 🔍 et sauvegarder des contenus multimédias favoris ❤️.
 
-Cinetech Logo Logo de l'application Cinetech
+<img width="139" alt="image" src="https://github.com/user-attachments/assets/62844d59-eb4d-40c9-8010-80f0ae45b7b6" />
+
 
 Fonctionnalités ✨
 Pages Principales 📚
