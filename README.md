@@ -9,7 +9,9 @@ Cinetech est une application web qui permet aux utilisateurs de découvrir des f
 
 
 Fonctionnalités ✨
+
 Pages Principales 📚
+
 Page d'Accueil 🏠
 
 📌 Affiche une sélection de films et séries populaires
