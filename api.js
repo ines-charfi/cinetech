@@ -1,5 +1,5 @@
 // api.js
-export const apiKey = '8c4b867188ee47a1d4e40854b27391ec';
+export const apiKey = 'a1d40f7c02d44bf3a6694ddd7924a331';
 
 export async function fetchMovies(page = 1) {
     try {
