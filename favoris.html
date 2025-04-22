@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinetek - Favoris</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="favoris.js" type="module"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="bg-dark text-white text-center p-4">
+        <h1>|Cine<span class="text-danger">FleX</span></h1>
+        <input type="text" id="search" placeholder="Rechercher..." class="search-bar" oninput="searchContent()">
+        <div id="search-results" class="search-results"></div>
+        <nav>
+            <a href="index.html" class="text-white">Accueil</a>
+            <a href="movies.html" class="text-white">Films</a>
+            <a href="series.html" class="text-white">Séries</a>
+            <a href="favoris.html" class="text-white active">Favoris</a>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+       
+        <h2>Mes Favoris</h2>
+      
+        <div id="favorites-container" class="row"></div>
+    </div>
+        <button id="clear-favorites" class="btn btn-danger">Vider les Favoris</button>
+    
+</body>
+    <footer class="bg-dark text-white text-center p-4">
+        <p>&copy; 2023 |Cine<span class="text-danger">FleX</span></p>
+    </footer>
+</html>
