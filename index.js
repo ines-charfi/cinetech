@@ -1,88 +1,117 @@
 // index.js
-// Vous pouvez ajouter ici des fonctionnalités spécifiques à la page d'accueil
-// Par exemple, des animations, des événements, ou des redirections
+import { fetchMovies, fetchSeries, addToFavorites } from './api.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Code à exécuter lorsque le DOM est complètement chargé
-    console.log('Page d\'accueil chargée');
-    // Vous pouvez ajouter d'autres fonctionnalités ici
+    const moviesContainer = document.getElementById('movies-container');
+    const seriesContainer = document.getElementById('series-container');
+
+    async function loadMovies() {
+        try {
+            const data = await fetchMovies(1);
+            displayMovies(data.results);
+        } catch (error) {
+            console.error('Erreur lors du chargement des films:', error);
+        }
+    }
+
+    async function loadSeries() {
+        try {
+            const data = await fetchSeries(1);
+            displaySeries(data.results);
+        } catch (error) {
+            console.error('Erreur lors du chargement des séries:', error);
+        }
+    }
+
+    function displayMovies(movies) {
+        moviesContainer.innerHTML = '';
+        movies.forEach(movie => {
+            const movieElement = document.createElement('div');
+            movieElement.classList.add('col-md-3', 'movie');
+            movieElement.innerHTML = `
+                <h5><b>${movie.title}</b></h5>
+                <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" class="img-fluid">
+                <i class="far fa-heart favorite-icon" data-id="${movie.id}" data-type="movie"></i>
+                <span class="badge badge-secondary">${movie.release_date}</span>
+                <a href="detail.html?id=${movie.id}" class="btn btn-danger">Détails</a>
+            `;
+            moviesContainer.appendChild(movieElement);
+        });
+        setupFavoriteListeners();
+    }
+
+    function displaySeries(series) {
+        seriesContainer.innerHTML = '';
+        series.forEach(serie => {
+            const seriesElement = document.createElement('div');
+            seriesElement.classList.add('col-md-3', 'series');
+            seriesElement.innerHTML = `
+                <h5><b>${serie.name}</b></h5>
+                <img src="https://image.tmdb.org/t/p/w500${serie.poster_path}" alt="${serie.name}" class="img-fluid">
+                <i class="far fa-heart favorite-icon" data-id="${serie.id}" data-type="tv"></i>
+                <span class="badge badge-secondary">${serie.first_air_date}</span>
+                <a href="detail.html?id=${serie.id}&type=tv" class="btn btn-danger">Détails</a>
+            `;
+            seriesContainer.appendChild(seriesElement);
+        });
+        setupFavoriteListeners();
+    }
+
+    function setupFavoriteListeners() {
+        document.querySelectorAll('.favorite-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const id = this.dataset.id;
+                const type = this.dataset.type;
+                this.classList.toggle('fas');
+                this.classList.toggle('far');
+                this.style.color = this.classList.contains('fas') ? 'red' : '';
+                addToFavorites(id, type);
+            });
+        });
+    }
+
+    async function searchContent() {
+        const query = document.getElementById('search').value;
+        const resultsContainer = document.getElementById('search-results');
+        resultsContainer.innerHTML = '';
+    
+        if (query.length < 3) {
+            return;
+        }
+    
+        try {
+            const [moviesData, seriesData] = await Promise.all([fetchMovies(1), fetchSeries(1)]);
+    
+            const filteredResults = [
+                ...moviesData.results.map(movie => ({ title: movie.title, id: movie.id, type: 'movie' })),
+                ...seriesData.results.map(serie => ({ title: serie.name, id: serie.id, type: 'tv' }))
+            ].filter(item => item.title.toLowerCase().includes(query.toLowerCase()));
+    
+            if (filteredResults.length === 0) {
+                const noResultsElement = document.createElement('div');
+                noResultsElement.textContent = 'Aucun résultat trouvé';
+                noResultsElement.className = 'search-result-item';
+                resultsContainer.appendChild(noResultsElement);
+            } else {
+                filteredResults.forEach(item => {
+                    const resultElement = document.createElement('div');
+                    resultElement.textContent = item.title;
+                    resultElement.className = 'search-result-item';
+                    resultElement.onclick = () => {
+                        window.location.href = `detail.html?id=${item.id}&type=${item.type}`;
+                    };
+                    resultsContainer.appendChild(resultElement);
+                });
+            }
+    
+        } catch (error) {
+            console.error('Erreur lors de la recherche:', error);
+        }
+    }
+
+    // Assurez-vous que la fonction est accessible globalement
+    window.searchContent = searchContent;
+
+    loadMovies();
+    loadSeries();
 });
-import { fetchMovies, fetchSeries } from './api.js';
-
-const moviesContainer = document.getElementById('movies-container');
-const seriesContainer = document.getElementById('series-container');
-
-async function loadMovies() {
-    try {
-        const data = await fetchMovies(1); // Fetch first page of movies
-        displayMovies(data.results);
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-async function loadSeries() {
-    try {
-        const data = await fetchSeries(1); // Fetch first page of series
-        displaySeries(data.results);
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-async function displayMovies(movies) {
-    moviesContainer.innerHTML = '';
-    movies.forEach(movie => {
-        const movieElement = document.createElement('div');
-        movieElement.classList.add('col-md-3', 'movie');
-        movieElement.innerHTML = `
-            <h5><b>${movie.title}</b></h5>
-            <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}" class="img-fluid">
-            <i class="far fa-heart" onclick="toggleFavorite(this, ${movie.id})" style="cursor: pointer; font-size: 24px;"></i><br>
-            <span class="badge badge-secondary">${movie.release_date}</span><br>
-            <a href="detail.html?id=${movie.id}" class="btn btn-danger">Détails</a>
-        `;
-        moviesContainer.appendChild(movieElement);
-    });
-}
-window.toggleFavorite = function(heartIcon, movieId) {
-    heartIcon.classList.toggle('fas'); // Change l'icône de cœur vide à plein
-    heartIcon.classList.toggle('far'); // Change l'icône de cœur plein à vide
-    heartIcon.style.color = heartIcon.classList.contains('fas') ? 'red' : ''; // Change la couleur en rouge si plein
-    addToFavorites(movieId, 'movie'); // Appel de la fonction pour ajouter aux favoris
-};
-export function addToFavorites(id, type) {
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    // Vérifiez si l'élément est déjà dans les favoris
-    if (!favorites.some(fav => fav.id === id && fav.type === type)) {
-        favorites.push({ id, type });
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-        alert('Ajouté aux favoris !');
-    } else {
-        alert('Déjà dans les favoris !');
-    }
-}
-async function displaySeries(series) {
-    seriesContainer.innerHTML = '';
-    series.forEach(serie => {
-        const seriesElement = document.createElement('div');
-        seriesElement.classList.add('col-md-3', 'series');
-        seriesElement.innerHTML = `
-            <h5><b>${serie.name}</b></h5>
-            <img src="https://image.tmdb.org/t/p/w500${serie.poster_path}" alt="${serie.name}" class="img-fluid"><br>
-            <span class="badge badge-secondary">${serie.first_air_date}</span><br>
-             <i class="far fa-heart" onclick="toggleFavorite(this, ${serie.id})" style="cursor: pointer; font-size: 24px;"></i><br>
-            <a href="detail.html?id=${serie.id}&type=tv" class="btn btn-danger">Détails</a>
-        `;
-        seriesContainer.appendChild(seriesElement);
-    });
-}
-window.toggleFavorite = function(heartIcon, serieId) {
-    heartIcon.classList.toggle('fas'); // Change l'icône de cœur vide à plein
-    heartIcon.classList.toggle('far'); // Change l'icône de cœur plein à vide
-    heartIcon.style.color = heartIcon.classList.contains('fas') ? 'red' : ''; // Change la couleur en rouge si plein
-    addToFavorites(serieId, 'serie'); // Appel de la fonction pour ajouter aux favoris
-};
-// Load movies and series on page load
-loadMovies();
-loadSeries();

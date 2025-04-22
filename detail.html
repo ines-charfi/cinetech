@@ -1,37 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cinetek - Détails</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="detail.js" type="module" defer></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineFlex - Détails</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="bg-dark text-white text-center p-4">
-        <h1>Cine<span class="text-danger">FleX|</span></h1>
-        <input type="text" id="search" placeholder="Rechercher..." class="search-bar">
-        <nav>
-            <a href="index.html" class="text-white">Accueil</a>
-            <a href="movies.html" class="text-white">Films</a>
-            <a href="series.html" class="text-white">Séries</a>
-            <a href="favoris.html" class="text-white">Favoris</a>
-        </nav>
-    </header>
+  <header class="detail-header">
+    <button class="back-btn" onclick="history.back()">
+      <i class="fas fa-arrow-left"></i> RETOUR
+    </button>
+    
+    <nav class="detail-nav">
+      <a href="index.html" class="detail-nav-link">ACCUEIL</a>
+      <a href="movies.html" class="detail-nav-link">FILMS</a>
+      <a href="series.html" class="detail-nav-link">SÉRIES</a>
+      <a href="favoris.html" class="detail-nav-link">FAVORIS</a>
+    </nav>
+    
+    <input type="text" class="detail-search" placeholder="RECHERCHER...">
+  </header>
 
-  
-    <div class="container mt-4">
-        <h2 id="series-title" class="text-center"></h2>
-        <div id="detail-container" class="row"></div>
-        <div id="comments-container" class="mt-4"></div>
-    </div>
+    <main>
+        <div id="detail-container">
+        <!-- Le contenu sera généré par JavaScript -->
+        </div>
+        
+        <div class="comments-section">
+            <h2>COMMENTAIRES</h2>
+            <div id="comments-container"></div>
+        </div>
+        
+        <div class="similar-section">
+            <h2>TITRES SIMILAIRES</h2>
+            <div id="similar-titles-container" class="items-grid"></div>
+        </div>
+    </main>
 
-    <footer class="bg-dark text-white text-center p-4">
-        <p>&copy; 2023 Cine<span class="text-danger">FleX|</span></p>
-    </footer>
+  <footer class="footer">
+    <p>&copy; 2025 |CineFlex. Tous droits réservés.</p>
+  </footer>
+
+  <script src="detail.js" type="module"></script>
 </body>
 </html>
